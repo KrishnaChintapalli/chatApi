@@ -3,11 +3,13 @@ package com.chat.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by sivaramakrishnaprasadchintapalli on 6/18/17.
  */
 @Entity
+@Table(name = "roles")
 public class Role {
 
     @Id

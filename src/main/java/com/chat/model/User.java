@@ -1,10 +1,8 @@
 package com.chat.model;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,10 +11,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_details")
-public class User {
+public class User implements Serializable{
 
-//    @GenericGenerator(name = "generator", strategy = "foreign",
-//            parameters = @Parameter(name = "property", value = "login"))
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -128,8 +125,6 @@ public class User {
         this.updaetd = updaetd;
     }
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @PrimaryKeyJoinColumn
     public Login getLogin() {
         return login;
     }

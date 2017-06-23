@@ -31,6 +31,7 @@ public class Login {
     private Date created;
 
     private Date updated;
+    private String token;
 
     @NotNull
     @Transient
@@ -57,6 +58,7 @@ public class Login {
         this.l_name = l_name;
         this.roles = roles;
     }
+
 
     public long getId() {
         return id;
@@ -146,6 +148,15 @@ public class Login {
     public void setRoles(Role roles) {
         this.roles = roles;
     }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
 
     @Override
     public String toString() {

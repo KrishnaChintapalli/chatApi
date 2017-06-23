@@ -15,9 +15,7 @@ public interface IRegistrationRepository extends CrudRepository<Login, Long> {
 
     Login findOneByEmail(String email);
 
-    Login deleteByEmail(String email);
-
-    Login deleteByUserName(String userName);
+    Login deleteById(Long id);
 
     boolean existsByUserName(String UserName);
 

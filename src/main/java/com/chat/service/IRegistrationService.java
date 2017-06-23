@@ -1,7 +1,6 @@
 package com.chat.service;
 
 import com.chat.model.Login;
-import com.chat.model.User;
 
 /**
  * Created by sivaramakrishnaprasadchintapalli on 6/17/17.
@@ -13,4 +12,8 @@ public interface IRegistrationService {
     boolean isUserExist(String userName);
 
     boolean deactivateUser(String userName );
+
+    Login getUser(String userName);
+
+
 }
