@@ -1,14 +1,21 @@
 package com.chat.service;
 
+import com.chat.dao.IRegistrationRepository;
 import com.chat.dao.IUserRepository;
+import com.chat.model.Login;
 import com.chat.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by sivaramakrishnaprasadchintapalli on 6/22/17.
@@ -20,6 +27,9 @@ public class UserSereviceImpl implements IUserservice {
 
     @Autowired
     IUserRepository userRepository;
+
+    @Autowired
+    IRegistrationRepository registrationRepository;
 
     @Override
     public User getUser(String id) {
@@ -56,5 +66,12 @@ public class UserSereviceImpl implements IUserservice {
         user1 = userRepository.save(user1);
         logger.info("user updated success fully"+user1.toString());
         return user1;
+    }
+
+    public UserDetails loadUserByUserName(String userName) {
+        Login login = registrationRepository.findOneByUserName(userName);
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(login.getRoles().getName()));
+        return new org.springframework.security.core.userdetails.User(login.getUserName(), login.getPassword(), grantedAuthorities);
     }
 }
