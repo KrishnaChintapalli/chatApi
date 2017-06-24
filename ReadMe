@@ -1,2 +1,152 @@
 
-Chat App Rest API
+Project Title
+
+CHATAPI
+
+ChatAPi is an Rest API provides as Peer to Peer Comunnication. 
+From this project User can register and send messages. Its an Unique platform fo Messaging.
+
+
+Getting Started
+Follow these Instructions to run as application in the your Local Environment.
+Step one:
+CLone the project into the local machine.
+
+Step Two: Open the project in IntelliJ
+
+Step Three: Create a database in MySQL with name "chatapi"
+
+Step Four: In Resource folder Application.propertiesfile -> change the userName and Password which is associated with the MySQL
+
+Step Five :Rebuild the apllication form  IntelliJ-> select project-> Choose Rebuild module
+
+Step Six: run ChatApplication file as Java Application
+
+Step Seven: Open the chatapi database-> Update the User roles.
+
+Step Eight: Application is Up and Running. User can Register and send Messages to others.
+
+Prerequisites
+
+Install or Update Java8.
+Install MySQL database.
+Install IntelliJ Ide to run the Application
+Install Maven in IDE
+Install the Postman to test the restend points.
+
+Versioning
+
+Used Github as Source code and version Control.
+
+To test the Application:
+ENDPOINTS as Follows:
+
+For ever Request we need to send Authorization code:
+
+
+User Registeration: http://localhost:8080/account/registration
+  Post Method       in request body{
+                    "userName":"",
+                    "email": "",
+                    "password" : "",
+                    "f_name":"",
+                    "l_name" : ""
+                    }
+                    Response{
+                    userName=, userId=, token=
+                    }
+                    
+User Profile: http://localhost:8080/user/profilr/{id}
+Get Method      Response{
+                "id": ,
+                "f_name": "",
+                "l_name": "",
+                "address": "",
+                "city": "",
+                "state": "",
+                "zipcode": ,
+                "dob": ,
+                "created": ,
+                "updaetd": 
+                }
+                
+ Update User Profile: http://localhost:8080/user/profilr/{id}
+ Post Method    Request body{
+                "f_name": "",
+                "l_name": "",
+                "address": "",
+                "city": "",
+                "state": "",
+                "zipcode": ,
+                "dob":"yyyy-mm-dd" ,
+                }
+                response{
+                "id": ,
+                "f_name": "",
+                "l_name": "",
+                "address": "",
+                "city": "",
+                "state": "",
+                "zipcode": ,
+                "dob": ,
+                "created": ,
+                "updaetd": 
+                }
+               
+To Get List of Users :http://localhost:8080/user/userList/{Userid}
+Other than current User
+               Response[
+               {"id": ,
+                "f_name": "",
+                "l_name": "",
+                "address": ,
+                "city": ,
+                "state": ,
+                "zipcode":,
+                "dob": ,
+                "created": ,
+                "updaetd": },{},{}]
+                
+To send a Message to User: http://localhost:8080/user/{fromuserId}/message/{touserId}
+PostMethod      Request Body:{message: ""}
+                Response:
+                
+Message List from
+Selected Users: http://localhost:8080/user/{currentUserID}/message/{toid}
+Get Method      Response[{message1},{message2} ,......]
+  
+List of conversations
+between multiple User:http://localhost:8080/user/{currentUserID}/messages
+Get Method     Response{
+    "com.chat.model.Conversation@b1ab8e3": [
+        {
+            "message_id": 1,
+            "message": "Hai",
+            "from_id": 1,
+            "to_id": 2,
+            "createdOn": 1498277169000,
+            "read": false
+        },
+        {
+            "message_id": 2,
+            "message": "Hello",
+            "from_id": 1,
+            "to_id": 2,
+            "createdOn": 1498277557000,
+            "read": false
+        },
+        {
+            "message_id": 3,
+            "message": "was up?",
+            "from_id": 2,
+            "to_id": 1,
+            "createdOn": 1498277600000,
+            "read": false
+        }
+    ]
+}
+
+
+Authors
+
+Krishna Chintapalli
