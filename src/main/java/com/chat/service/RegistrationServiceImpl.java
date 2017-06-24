@@ -6,6 +6,8 @@ import com.chat.dao.IUserRepository;
 import com.chat.model.Login;
 import com.chat.model.Role;
 import com.chat.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ import java.util.Date;
 @Transactional
 public class RegistrationServiceImpl implements IRegistrationService {
 
+    public Logger logger = LoggerFactory.getLogger("RegistrationServiceImpl.class");
+
     @Autowired
     private IRegistrationRepository registrationRepository;
     @Autowired
@@ -29,15 +33,20 @@ public class RegistrationServiceImpl implements IRegistrationService {
 
     @Override
     public Login save(Login l) {
+        logger.info("save Login Started" +l.toString());
         l.setCreated(new Date());
         l.setUpdated(new Date());
         Role role = roleRepository.findByName("USER");
+        logger.info(role.getId().toString());
         l.setRoles(role);
         Login login =registrationRepository.save(l);
         User user = new User();
         user.setF_name(l.getF_name());
         user.setLogin(login);
         user.setL_name(l.getL_name());
+        user.setCreated(new Date());
+        user.setUpdaetd(new Date());
+        logger.info(user.toString());
         userRepository.save(user);
 
         return login;

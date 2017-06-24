@@ -17,5 +17,5 @@ public interface IConversationRepository extends CrudRepository<Conversation, Lo
     Conversation findConversation(long fromId, long toId);
 
     @Query(value = "select c from  Conversation c where  c.user1_id=?1 or c.user2_id=?1")
-    List<Conversation> findConversationList(long user);
+    List<Conversation> findConversationList(long id);
 }

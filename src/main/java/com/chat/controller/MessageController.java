@@ -3,6 +3,8 @@ package com.chat.controller;
 import com.chat.model.Conversation;
 import com.chat.model.Message;
 import com.chat.service.IMessageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +17,25 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user/{id}")
 public class MessageController {
+    Logger logger = LoggerFactory.getLogger("MessageController.class");
 
     @Autowired
     private IMessageService messageService;
 
-    @RequestMapping(value = "/message/{id}", method = RequestMethod.POST)
-    public void saveMessage(@PathVariable String fromId,  @PathVariable String toid, @RequestBody Message msg){
+    @RequestMapping(value = "/message/{toid}", method = RequestMethod.POST)
+    public void saveMessage(@PathVariable String id,  @PathVariable String toid, @RequestBody Message msg){
 
+        messageService.createMessage(msg,id,toid);
     }
 
     @RequestMapping(value = "/messages",method = RequestMethod.GET)
-    public Map<Conversation,List<Message>> getMessages(@PathVariable String userId){
+    public @ResponseBody Map<Conversation,List<Message>> getMessages(@PathVariable String id){
 
-        return messageService.ListOfMessages(userId);
+        logger.info(id);
+        return messageService.ListOfMessages(id);
     }
-    @RequestMapping(value = "/message/{id}", method = RequestMethod.GET)
-    public List<Message> getconversation(@PathVariable String fromId,  @PathVariable String toId){
+    @RequestMapping(value = "/message/{toid}", method = RequestMethod.GET)
+    public @ResponseBody List<Message> getconversation(@PathVariable String id,  @PathVariable String toId){
 
         return null;
     }

@@ -12,4 +12,6 @@ public interface IUserservice {
     User getUser(String id);
 
     List<User> getUserList(String id);
+
+    User updateUser(User user);
 }

@@ -1,5 +1,7 @@
 package com.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -35,7 +37,7 @@ public class User implements Serializable{
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "login_id")
-    @MapsId
+    @JsonIgnore
     private Login login;
 
     public User(){}
@@ -145,8 +147,6 @@ public class User implements Serializable{
                 ", zipcode=" + zipcode +
                 ", dob=" + dob +
                 ", created=" + created +
-                ", updaetd=" + updaetd +
-                ", login=" + login +
-                '}';
+                ", updaetd=" + updaetd + '}';
     }
 }

@@ -13,5 +13,5 @@ import java.util.List;
 @Repository
 public interface IMessageRepository extends CrudRepository<Message, Long>{
 
-    List<Message> findByConversationId(Conversation conversation);
+    List<Message> findByConversation(Conversation conversation);
 }

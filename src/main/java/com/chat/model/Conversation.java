@@ -1,5 +1,7 @@
 package com.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -9,8 +11,6 @@ import java.util.List;
  * Created by sivaramakrishnaprasadchintapalli on 6/22/17.
  */
 
-//@NamedQueries(value = {
-//        @NamedQuery(name = "findConversation",
 @Entity
 @Table(name = "conversation")
 
@@ -25,6 +25,7 @@ public class Conversation implements Serializable {
     private long user2_id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conversation")
+    @JsonIgnore
     private List<Message> messages ;
 
     public Conversation() {

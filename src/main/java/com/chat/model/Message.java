@@ -1,5 +1,7 @@
 package com.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -25,6 +27,7 @@ public class Message implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conversation_id")
+    @JsonIgnore
     private Conversation conversation;
 
 

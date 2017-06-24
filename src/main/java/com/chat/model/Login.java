@@ -1,5 +1,7 @@
 package com.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -45,6 +47,7 @@ public class Login {
     private User user;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JsonIgnore
     private Role roles;
 
     public Login(){
