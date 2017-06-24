@@ -34,9 +34,9 @@ public class MessageController {
         logger.info(id);
         return messageService.ListOfMessages(id);
     }
-    @RequestMapping(value = "/message/{toid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/message/{toId}", method = RequestMethod.GET)
     public @ResponseBody List<Message> getconversation(@PathVariable String id,  @PathVariable String toId){
 
-        return null;
+        return messageService.getConversation(id, toId);
     }
 }
